@@ -18,14 +18,6 @@ export default class Linebot {
     this.token = token
   }
 
-  get token () {
-    return this.token
-  }
-
-  set token (token) {
-    this.token = token
-  }
-
   async httpGetWithToken ({ endpoint, params }) {
     return _.get(await axios.post(ENDPOINT_PLAYGROUND, {
       accessToken: this.token,

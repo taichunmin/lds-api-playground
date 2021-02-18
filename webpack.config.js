@@ -32,6 +32,7 @@ module.exports = env => ({
     filename: 'linebot.js',
     globalObject: 'this',
     library: 'linebot',
+    libraryExport: 'default',
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist'),
   },

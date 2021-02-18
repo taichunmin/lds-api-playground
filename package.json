@@ -5,7 +5,6 @@
   "module": "src/index.js",
   "name": "line-bot-sdk-web",
   "repository": "git@github.com:taichunmin/line-bot-sdk-web.git",
-  "type": "module",
   "version": "1.0.0",
   "dependencies": {
     "axios": "^0.21.1",

@@ -6,6 +6,12 @@ module.exports = env => ({
   mode: 'production',
   devtool: 'source-map',
   externals: {
+    axios: {
+      amd: 'axios',
+      commonjs: 'axios',
+      commonjs2: 'axios',
+      root: 'axios',
+    },
     lodash: {
       amd: 'lodash',
       commonjs: 'lodash',

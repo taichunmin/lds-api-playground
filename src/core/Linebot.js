@@ -18,7 +18,7 @@ export default class Linebot {
     this.token = token
   }
 
-  async httpGetWithToken ({ endpoint, params }) {
+  async httpGet ({ endpoint, params }) {
     return _.get(await axios.post(ENDPOINT_PLAYGROUND, {
       accessToken: this.token,
       method: 'get',
@@ -34,7 +34,7 @@ export default class Linebot {
     }), 'data')
   }
 
-  async httpPostWithToken ({ body, endpoint }) {
+  async httpPost ({ body, endpoint }) {
     return _.get(await axios.post(ENDPOINT_PLAYGROUND, {
       accessToken: this.token,
       method: 'post',
@@ -50,7 +50,7 @@ export default class Linebot {
     }), 'data')
   }
 
-  async httpPostForm ({ body, endpoint }) {
+  static async httpPostForm ({ body, endpoint }) {
     return _.get(await axios.post(ENDPOINT_PLAYGROUND, {
       accessToken: null,
       method: 'post',
@@ -64,8 +64,8 @@ export default class Linebot {
     }), 'data')
   }
 
-  async postOauthAccessToken (clientId, clientSecret) {
-    return await this.httpPostForm({
+  static async postOauthAccessToken (clientId, clientSecret) {
+    return await Linebot.httpPostForm({
       endpoint: `${APIBASE_OAUTH}/accessToken`,
       body: {
         client_id: clientId,
@@ -75,8 +75,8 @@ export default class Linebot {
     })
   }
 
-  async postOauthRevoke (token) {
-    return await this.httpPostForm({
+  static async postOauthRevoke (token) {
+    return await Linebot.httpPostForm({
       endpoint: `${APIBASE_OAUTH}/revoke`,
       body: {
         access_token: token,
@@ -85,40 +85,40 @@ export default class Linebot {
   }
 
   async getMessageQuota () {
-    return await this.httpGetWithToken({
+    return await this.httpGet({
       endpoint: `${APIBASE_BOT}/message/quota`,
     })
   }
 
   async getMessageQuotaConsumption () {
-    return await this.httpGetWithToken({
+    return await this.httpGet({
       endpoint: `${APIBASE_BOT}/message/quota/consumption`,
     })
   }
 
   async getMessageDeliveryReply (date) {
-    return await this.httpGetWithToken({
+    return await this.httpGet({
       endpoint: `${APIBASE_BOT}/message/delivery/reply`,
       params: { date },
     })
   }
 
   async getMessageDeliveryPush (date) {
-    return await this.httpGetWithToken({
+    return await this.httpGet({
       endpoint: `${APIBASE_BOT}/message/delivery/push`,
       params: { date },
     })
   }
 
   async getMessageDeliveryMulticast (date) {
-    return await this.httpGetWithToken({
+    return await this.httpGet({
       endpoint: `${APIBASE_BOT}/message/delivery/multicast`,
       params: { date },
     })
   }
 
   async getProfile (userId) {
-    return await this.httpGetWithToken({
+    return await this.httpGet({
       endpoint: `${APIBASE_BOT}/profile/${userId}`,
     })
   }
